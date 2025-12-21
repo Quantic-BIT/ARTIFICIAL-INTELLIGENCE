@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acme Policy Assistant</title>
+    <meta name="description" content="AI-powered assistant for Acme Corporation company policies and procedures">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">📋</div>
+                    <div class="logo-text">
+                        <h1>Acme Policy Assistant</h1>
+                        <p>Your AI-powered guide to company policies</p>
+                    </div>
+                </div>
+                <div class="header-status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Online</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <main class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Welcome Message -->
+                <div class="message assistant">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <div class="message-text">
+                            <p>Hello! I'm the Acme Policy Assistant. I can help you find information about:</p>
+                            <ul>
+                                <li>📅 <strong>PTO & Leave</strong> - Vacation, sick days, personal time</li>
+                                <li>🏠 <strong>Remote Work</strong> - Work from home policies</li>
+                                <li>💰 <strong>Expenses</strong> - Reimbursement procedures</li>
+                                <li>🔒 <strong>Security</strong> - IT and data security policies</li>
+                                <li>🎁 <strong>Benefits</strong> - Health, 401k, and more</li>
+                                <li>📆 <strong>Holidays</strong> - Company holiday schedule</li>
+                            </ul>
+                            <p>What would you like to know?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="chat-input-container">
+                <form id="chatForm" class="chat-form">
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="messageInput" 
+                            placeholder="Ask about company policies..." 
+                            autocomplete="off"
+                            required
+                        >
+                        <button type="submit" id="sendButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+                <p class="input-hint">Pro tip: Ask specific questions for better answers</p>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by RAG + Groq | Acme Corporation © 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        const chatForm = document.getElementById('chatForm');
+        const messageInput = document.getElementById('messageInput');
+        const chatMessages = document.getElementById('chatMessages');
+        const sendButton = document.getElementById('sendButton');
+
+        // Add message to chat
+        function addMessage(content, isUser = false, sources = null, latency = null) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'assistant'}`;
+            
+            let messageHTML = '';
+            
+            if (isUser) {
+                messageHTML = `
+                    <div class="message-content">
+                        <div class="message-text">${escapeHtml(content)}</div>
+                    </div>
+                    <div class="message-avatar">👤</div>
+                `;
+            } else {
+                let sourcesHTML = '';
+                if (sources && sources.length > 0) {
+                    sourcesHTML = `
+                        <div class="message-sources">
+                            <div class="sources-header">📚 Sources:</div>
+                            <div class="sources-list">
+                                ${sources.map(s => `
+                                    <div class="source-item">
+                                        <span class="source-name">${escapeHtml(s.title)}</span>
+                                        <span class="source-file">${escapeHtml(s.source)}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                let latencyHTML = '';
+                if (latency) {
+                    latencyHTML = `<div class="message-latency">⚡ ${latency.toFixed(0)}ms</div>`;
+                }
+                
+                messageHTML = `
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <div class="message-text">${formatResponse(content)}</div>
+                        ${sourcesHTML}
+                        ${latencyHTML}
+                    </div>
+                `;
+            }
+            
+            messageDiv.innerHTML = messageHTML;
+            chatMessages.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Add loading indicator
+        function addLoading() {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message assistant loading';
+            loadingDiv.id = 'loadingMessage';
+            loadingDiv.innerHTML = `
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <div class="loading-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(loadingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Remove loading indicator
+        function removeLoading() {
+            const loading = document.getElementById('loadingMessage');
+            if (loading) loading.remove();
+        }
+
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Format response with markdown-like styling
+        function formatResponse(text) {
+            // Escape HTML first
+            text = escapeHtml(text);
+            
+            // Convert markdown-like formatting
+            text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            text = text.replace(/\[Source: (.*?)\]/g, '<span class="citation">[Source: $1]</span>');
+            
+            // Convert line breaks to paragraphs
+            text = text.split('\n\n').map(p => `<p>${p}</p>`).join('');
+            text = text.replace(/\n/g, '<br>');
+            
+            return text;
+        }
+
+        // Handle form submission
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const message = messageInput.value.trim();
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, true);
+            messageInput.value = '';
+            
+            // Disable input while loading
+            messageInput.disabled = true;
+            sendButton.disabled = true;
+            addLoading();
+            
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message })
+                });
+                
+                const data = await response.json();
+                
+                removeLoading();
+                
+                if (data.error) {
+                    addMessage(`Sorry, something went wrong: ${data.error}`);
+                } else {
+                    addMessage(data.answer, false, data.sources, data.latency_ms);
+                }
+            } catch (error) {
+                removeLoading();
+                addMessage('Sorry, I encountered an error. Please try again.');
+                console.error('Chat error:', error);
+            } finally {
+                // Re-enable input
+                messageInput.disabled = false;
+                sendButton.disabled = false;
+                messageInput.focus();
+            }
+        });
+
+        // Focus input on load
+        messageInput.focus();
+    </script>
+</body>
+</html>

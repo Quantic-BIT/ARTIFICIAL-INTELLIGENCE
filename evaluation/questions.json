@@ -1,0 +1,179 @@
+{
+    "questions": [
+        {
+            "id": 1,
+            "category": "PTO",
+            "question": "How many vacation days do new employees get?",
+            "expected_answer": "New employees (0-2 years) receive 15 vacation days per year",
+            "source": "pto_policy.md"
+        },
+        {
+            "id": 2,
+            "category": "PTO",
+            "question": "How many sick days are provided per year?",
+            "expected_answer": "10 sick days per year",
+            "source": "pto_policy.md"
+        },
+        {
+            "id": 3,
+            "category": "PTO",
+            "question": "Can unused vacation days be carried over to the next year?",
+            "expected_answer": "Maximum 5 days can be carried over to the next calendar year",
+            "source": "pto_policy.md"
+        },
+        {
+            "id": 4,
+            "category": "Remote Work",
+            "question": "Can I work from home?",
+            "expected_answer": "Yes, with manager approval, after 90 days of employment",
+            "source": "remote_work_policy.md"
+        },
+        {
+            "id": 5,
+            "category": "Remote Work",
+            "question": "What internet speed is required for remote work?",
+            "expected_answer": "Minimum 25 Mbps download speed",
+            "source": "remote_work_policy.md"
+        },
+        {
+            "id": 6,
+            "category": "Remote Work",
+            "question": "Is there a home office stipend?",
+            "expected_answer": "Yes, a one-time $500 stipend for home office setup and $50/month internet stipend",
+            "source": "remote_work_policy.md"
+        },
+        {
+            "id": 7,
+            "category": "Expenses",
+            "question": "What is the daily meal limit when traveling?",
+            "expected_answer": "$90 daily maximum (breakfast $20, lunch $25, dinner $45)",
+            "source": "expense_policy.md"
+        },
+        {
+            "id": 8,
+            "category": "Expenses",
+            "question": "What is the hotel limit for New York City?",
+            "expected_answer": "$250/night for Tier 1 cities including NYC",
+            "source": "expense_policy.md"
+        },
+        {
+            "id": 9,
+            "category": "Expenses",
+            "question": "How long do I have to submit expense reports?",
+            "expected_answer": "Within 30 days of incurring the expense",
+            "source": "expense_policy.md"
+        },
+        {
+            "id": 10,
+            "category": "Security",
+            "question": "What are the password requirements?",
+            "expected_answer": "Minimum 12 characters, with uppercase, lowercase, numbers, and special characters",
+            "source": "security_policy.md"
+        },
+        {
+            "id": 11,
+            "category": "Security",
+            "question": "How often must passwords be changed?",
+            "expected_answer": "Every 90 days",
+            "source": "security_policy.md"
+        },
+        {
+            "id": 12,
+            "category": "Security",
+            "question": "What happens after 5 failed login attempts?",
+            "expected_answer": "Account locks after 5 failed attempts, auto-unlocks after 30 minutes",
+            "source": "security_policy.md"
+        },
+        {
+            "id": 13,
+            "category": "Security",
+            "question": "Do I need to use VPN when working remotely?",
+            "expected_answer": "Yes, always use VPN to access company resources when working remotely",
+            "source": "security_policy.md"
+        },
+        {
+            "id": 14,
+            "category": "Benefits",
+            "question": "What is the 401k company match?",
+            "expected_answer": "100% match on first 4% of salary",
+            "source": "benefits_policy.md"
+        },
+        {
+            "id": 15,
+            "category": "Benefits",
+            "question": "How long is paid parental leave for birth parents?",
+            "expected_answer": "16 weeks paid at 100%",
+            "source": "benefits_policy.md"
+        },
+        {
+            "id": 16,
+            "category": "Benefits",
+            "question": "What is the tuition reimbursement limit?",
+            "expected_answer": "Up to $5,250/year for degree programs",
+            "source": "benefits_policy.md"
+        },
+        {
+            "id": 17,
+            "category": "Benefits",
+            "question": "Is there a wellness stipend?",
+            "expected_answer": "$600/year wellness reimbursement for gym, fitness equipment, mental health apps",
+            "source": "benefits_policy.md"
+        },
+        {
+            "id": 18,
+            "category": "Holidays",
+            "question": "How many paid holidays are there?",
+            "expected_answer": "12 paid holidays per year",
+            "source": "holiday_schedule.md"
+        },
+        {
+            "id": 19,
+            "category": "Holidays",
+            "question": "Is Juneteenth a company holiday?",
+            "expected_answer": "Yes, June 19th is a paid company holiday",
+            "source": "holiday_schedule.md"
+        },
+        {
+            "id": 20,
+            "category": "Holidays",
+            "question": "Are there floating holidays?",
+            "expected_answer": "Yes, 2 floating holidays per year for religious observances or personal celebrations",
+            "source": "holiday_schedule.md"
+        },
+        {
+            "id": 21,
+            "category": "Code of Conduct",
+            "question": "What is the company's harassment policy?",
+            "expected_answer": "Zero tolerance policy for harassment, all reports investigated, confirmed harassment results in disciplinary action up to termination",
+            "source": "code_of_conduct.md"
+        },
+        {
+            "id": 22,
+            "category": "Code of Conduct",
+            "question": "What is the gift acceptance limit?",
+            "expected_answer": "Gifts under $100 may be accepted, gifts over $100 must be reported to compliance",
+            "source": "code_of_conduct.md"
+        },
+        {
+            "id": 23,
+            "category": "Employment",
+            "question": "How long is the probationary period?",
+            "expected_answer": "90 days for all new employees",
+            "source": "employee_handbook.md"
+        },
+        {
+            "id": 24,
+            "category": "Employment",
+            "question": "How much notice should I give when resigning?",
+            "expected_answer": "2 weeks for non-management, 4 weeks for management",
+            "source": "employee_handbook.md"
+        },
+        {
+            "id": 25,
+            "category": "Off-topic",
+            "question": "What is the best pizza place nearby?",
+            "expected_answer": "OFF_TOPIC",
+            "source": null
+        }
+    ]
+}
