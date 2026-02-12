@@ -2,7 +2,13 @@
 
 ## Live URL
 
-This application is designed to run locally. No cloud deployment is used for this project.
+**http://138.201.153.167**
+
+The application is deployed on a self-hosted Ubuntu 24.04 VPS using:
+- **Gunicorn** as the WSGI application server
+- **Nginx** as the reverse proxy
+- **systemd** for process management
+- **GitHub Actions** for CI/CD (auto-deploy on push to main)
 
 ## Running Locally
 

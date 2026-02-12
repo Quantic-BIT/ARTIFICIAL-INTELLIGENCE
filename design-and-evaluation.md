@@ -173,7 +173,7 @@ USER QUESTION: <question>
 | **LLM** | Groq (llama-3.1-8b) | Free, fast, good quality |
 | **Embeddings** | sentence-transformers | Free, local, reliable |
 | **Vector Store** | ChromaDB | Simple, local, persistent |
-| **Deployment** | Local (Gunicorn) | Simple, no cloud dependency |
+| **Deployment** | Self-hosted VPS (Gunicorn + Nginx) | Full control, persistent uptime |
 | **CI/CD** | GitHub Actions | Native integration, free |
 
 ---

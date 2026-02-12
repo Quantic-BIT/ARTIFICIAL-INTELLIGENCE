@@ -179,12 +179,19 @@ Run with ablation study (compares k=3, k=5, k=8):
 python evaluation/evaluate.py --save --ablation
 ```
 
-## 🚀 Running in Production
+## 🚀 Deployment
 
-Use gunicorn for production:
+### Live URL
+
+**http://138.201.153.167**
+
+Deployed on a self-hosted Ubuntu 24.04 VPS with Gunicorn + Nginx + systemd.
+
+### Deploy to your own server
 
 ```bash
-gunicorn run:app --bind 0.0.0.0:5000 --timeout 120
+# SSH into your server as root, then:
+bash deploy/setup-server.sh
 ```
 
 ### CI/CD
@@ -193,6 +200,7 @@ The project includes GitHub Actions that:
 - Run on push/PR to main
 - Install dependencies and run import/ingestion checks
 - Lint with flake8
+- **Auto-deploy** to VPS on push to main (via SSH)
 
 ## 🧪 Testing
 
