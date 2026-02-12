@@ -4,6 +4,8 @@ Vector Store Module
 Handles storage and retrieval of document embeddings using ChromaDB.
 """
 import os
+os.environ.setdefault('ANONYMIZED_TELEMETRY', 'False')
+os.environ.setdefault('CHROMA_TELEMETRY', 'False')
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 import chromadb

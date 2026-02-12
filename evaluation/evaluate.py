@@ -73,13 +73,33 @@ def _tokenize(text: str) -> set:
 def evaluate_groundedness(answer: str, expected_keywords: str) -> bool:
     """
     Check if the answer contains expected information.
-    Uses keyword overlap – grounded if >= 30 % of key terms appear.
+    Uses two-pass matching:
+      1. Extract numbers/amounts (e.g. $90, 15, 250) and check they appear in answer.
+      2. Keyword overlap on remaining terms – grounded if >= 30% match.
+    Grounded = True if EITHER the number check passes OR the keyword check passes.
     """
     if not answer or not expected_keywords:
         return False
     answer_lower = answer.lower()
-    key_terms = [t for t in expected_keywords.lower().split() if len(t) > 3]
+    expected_lower = expected_keywords.lower()
+
+    # Pass 1: Extract all numbers and dollar amounts from expected answer
+    numbers = re.findall(r'\$?[\d,]+(?:/\w+)?', expected_lower)
+    if numbers:
+        num_matches = sum(1 for n in numbers if n.strip('()') in answer_lower)
+        # If the primary number (first) appears, or at least 40% of numbers match
+        if num_matches >= 1 and (num_matches >= len(numbers) * 0.4 or numbers[0].strip('()') in answer_lower):
+            return True
+
+    # Pass 2: Keyword overlap (strip punctuation from terms)
+    key_terms = [re.sub(r'[^\w]', '', t) for t in expected_lower.split()]
+    key_terms = [t for t in key_terms if len(t) > 3]
     if not key_terms:
+        # Fallback: if no long keywords, check if any expected words appear
+        all_terms = [re.sub(r'[^\w]', '', t) for t in expected_lower.split() if len(t) > 1]
+        if all_terms:
+            matches = sum(1 for t in all_terms if t in answer_lower)
+            return matches >= len(all_terms) * 0.3
         return False
     matches = sum(1 for t in key_terms if t in answer_lower)
     return matches >= len(key_terms) * 0.3

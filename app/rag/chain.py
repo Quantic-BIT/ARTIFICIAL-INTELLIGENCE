@@ -28,12 +28,13 @@ class RAGChain:
 
 RULES:
 1. Answer ONLY from the provided context. Do NOT add information beyond what is stated.
-2. Restate the relevant facts concisely — include specific numbers, dates, percentages, and dollar amounts exactly as they appear in the context.
-3. Keep answers to 2–5 sentences. Do not over-explain or rephrase unnecessarily.
-4. Always cite sources in [Source: document_name] format at the end of your answer.
-5. If the context does not contain the answer, say: "I don't have enough information in our policies to answer that question."
-6. If the question is unrelated to company policies, say: "I can only answer questions about Acme Corporation's company policies."
-7. Do NOT make up policies, numbers, or procedures."""
+2. Restate the relevant facts concisely — include ALL specific numbers, dates, percentages, dollar amounts, tiers, and breakdowns exactly as they appear in the context.
+3. When the context lists sub-items (e.g. per-meal rates, city tiers, tier levels), include them ALL in your answer.
+4. Keep answers to 2–5 sentences. Do not over-explain or rephrase unnecessarily.
+5. Always cite sources in [Source: document_name] format at the end of your answer.
+6. If the question asks for a specific number or limit and that number does NOT appear in the context, say: "I don't have enough information in our policies to answer that question."
+7. If the question is unrelated to company policies, say: "I can only answer questions about Acme Corporation's company policies."
+8. Do NOT make up policies, numbers, or procedures."""
 
     def __init__(self, model_name: str = None, k: int = 5):
         self.model_name = model_name or os.environ.get('LLM_MODEL', 'llama-3.1-8b-instant')
@@ -66,7 +67,9 @@ RULES:
             title = result['metadata'].get('title', 'Unknown')
             content = result['content']
             
-            context_parts.append(f"[Document: {title} ({source})]\n{content}")
+            # Truncate chunk to 800 chars to reduce prompt size and latency
+            truncated = content[:800] if len(content) > 800 else content
+            context_parts.append(f"[Document: {title} ({source})]\n{truncated}")
         
         return "\n\n---\n\n".join(context_parts)
     
@@ -93,7 +96,7 @@ QUESTION: {query}"""
                     {"role": "system", "content": self.SYSTEM_PROMPT},
                     {"role": "user", "content": prompt}
                 ],
-                max_tokens=1024,
+                max_tokens=300,
                 temperature=0.1  # Low temperature for factual responses
             )
             
