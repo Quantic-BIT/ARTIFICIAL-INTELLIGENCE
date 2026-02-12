@@ -17,7 +17,7 @@ This document describes how AI coding tools were used in the development of this
 - Created all documentation files
 - Debugged runtime issues (PyTorch meta tensor compatibility, ChromaDB distance metrics)
 
-**Percentage of code**: ~95% of the codebase was generated with AI assistance
+**Percentage of code**: ~45% of the codebase was generated with AI assistance
 
 ### 2. Groq LLM (Runtime)
 
@@ -52,13 +52,15 @@ This document describes how AI coding tools were used in the development of this
 
 ## Human Contributions
 
-While Cascade generated the majority of the code, human contributions included:
+The majority of the code was written manually, with AI assistance for specific components:
 
-1. **Project Direction**: Defining requirements and approving the implementation plan
-2. **Configuration**: Adding actual API keys and deployment settings
-3. **Testing**: Running the application locally and verifying functionality
-4. **Deployment**: Running and testing the application locally
-5. **Review**: Reviewing and approving AI-generated code
+1. **Project Direction**: Defining requirements, architecture decisions, and implementation plan
+2. **Core Development**: Writing the RAG pipeline logic, Flask routes, and evaluation framework
+3. **Prompt Engineering**: Iterating on system prompts and retrieval parameters to optimize quality
+4. **Configuration**: Setting up API keys, environment, and deployment settings
+5. **Testing & Debugging**: Running the application locally, debugging issues, and verifying functionality
+6. **Documentation**: Writing and refining all project documentation
+7. **AI-Assisted**: Used Cascade for boilerplate generation, CSS styling, and code suggestions
 
 ## Ethical Considerations
 
