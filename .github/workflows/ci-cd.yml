@@ -48,9 +48,11 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    continue-on-error: true
     
     steps:
     - name: Deploy to VPS
+      if: ${{ secrets.SERVER_HOST != '' }}
       uses: appleboy/ssh-action@v1
       with:
         host: ${{ secrets.SERVER_HOST }}
