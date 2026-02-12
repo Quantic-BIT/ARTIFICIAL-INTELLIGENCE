@@ -183,7 +183,7 @@ python evaluation/evaluate.py --save --ablation
 
 ### Live URL
 
-**http://138.201.153.167**
+**http://138.201.153.167:5000**
 
 Deployed on a self-hosted Ubuntu 24.04 VPS with Gunicorn + Nginx + systemd.
 
