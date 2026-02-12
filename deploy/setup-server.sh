@@ -80,7 +80,7 @@ User=$APP_USER
 WorkingDirectory=$APP_DIR
 Environment=PATH=$APP_DIR/venv/bin:/usr/bin
 EnvironmentFile=$APP_DIR/.env
-ExecStart=$APP_DIR/venv/bin/gunicorn run:app --bind 127.0.0.1:$PORT --timeout 120 --workers 2
+ExecStart=$APP_DIR/venv/bin/gunicorn run:app --bind 0.0.0.0:$PORT --timeout 120 --workers 2
 Restart=always
 RestartSec=5
 
@@ -119,6 +119,7 @@ systemctl restart nginx
 # ── Firewall ──
 ufw allow 22/tcp
 ufw allow 80/tcp
+ufw allow 5000/tcp
 ufw --force enable
 
 echo ""
@@ -141,4 +142,5 @@ echo "     journalctl -u policy-assistant -f"
 echo ""
 echo "  5. Access the app:"
 echo "     http://$SERVER_IP"
+echo "     http://$SERVER_IP:5000"
 echo ""

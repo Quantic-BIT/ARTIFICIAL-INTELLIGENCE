@@ -2,7 +2,7 @@
 
 ## Live URL
 
-**http://138.201.153.167**
+**http://138.201.153.167** (port 80 via Nginx) or **http://138.201.153.167:5000** (direct)
 
 The application is deployed on a self-hosted Ubuntu 24.04 VPS using:
 - **Gunicorn** as the WSGI application server
