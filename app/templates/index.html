@@ -6,235 +6,430 @@
     <title>Acme Policy Assistant</title>
     <meta name="description" content="AI-powered assistant for Acme Corporation company policies and procedures">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="app-container">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">📋</div>
-                    <div class="logo-text">
-                        <h1>Acme Policy Assistant</h1>
-                        <p>Your AI-powered guide to company policies</p>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <div class="brand-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand-name">Acme Policy</span>
+                        <span class="brand-sub">AI Assistant</span>
                     </div>
                 </div>
-                <div class="header-status">
-                    <span class="status-dot"></span>
-                    <span class="status-text">Online</span>
-                </div>
+                <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
             </div>
-        </header>
 
-        <!-- Chat Container -->
-        <main class="chat-container">
-            <div class="chat-messages" id="chatMessages">
-                <!-- Welcome Message -->
-                <div class="message assistant">
-                    <div class="message-avatar">🤖</div>
-                    <div class="message-content">
-                        <div class="message-text">
-                            <p>Hello! I'm the Acme Policy Assistant. I can help you find information about:</p>
-                            <ul>
-                                <li>📅 <strong>PTO & Leave</strong> - Vacation, sick days, personal time</li>
-                                <li>🏠 <strong>Remote Work</strong> - Work from home policies</li>
-                                <li>💰 <strong>Expenses</strong> - Reimbursement procedures</li>
-                                <li>🔒 <strong>Security</strong> - IT and data security policies</li>
-                                <li>🎁 <strong>Benefits</strong> - Health, 401k, and more</li>
-                                <li>📆 <strong>Holidays</strong> - Company holiday schedule</li>
-                            </ul>
-                            <p>What would you like to know?</p>
+            <div class="sidebar-body">
+                <div class="sidebar-section">
+                    <h3 class="section-title">Policy Categories</h3>
+                    <nav class="category-nav">
+                        <button class="category-btn" data-query="What is our PTO and leave policy?">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            <span>PTO & Leave</span>
+                        </button>
+                        <button class="category-btn" data-query="What is the remote work policy?">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            <span>Remote Work</span>
+                        </button>
+                        <button class="category-btn" data-query="What is the expense reimbursement policy?">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            <span>Expenses</span>
+                        </button>
+                        <button class="category-btn" data-query="What are the IT security policies?">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <span>IT Security</span>
+                        </button>
+                        <button class="category-btn" data-query="What employee benefits does Acme offer?">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            <span>Benefits</span>
+                        </button>
+                        <button class="category-btn" data-query="What are the company holidays?">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <span>Holidays</span>
+                        </button>
+                        <button class="category-btn" data-query="What is the code of conduct?">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                            <span>Code of Conduct</span>
+                        </button>
+                        <button class="category-btn" data-query="Tell me about the employee handbook.">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            <span>Employee Handbook</span>
+                        </button>
+                    </nav>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="section-title">Popular Questions</h3>
+                    <div class="quick-questions">
+                        <button class="quick-q" data-query="How many vacation days do new employees get?">How many vacation days do new employees get?</button>
+                        <button class="quick-q" data-query="Can I work from home?">Can I work from home?</button>
+                        <button class="quick-q" data-query="What is the 401k company match?">What is the 401k company match?</button>
+                        <button class="quick-q" data-query="What are the password requirements?">What are the password requirements?</button>
+                        <button class="quick-q" data-query="How long is paid parental leave?">How long is paid parental leave?</button>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="section-title">System Status</h3>
+                    <div class="status-card" id="statusCard">
+                        <div class="status-row">
+                            <span class="status-label">Status</span>
+                            <span class="status-value" id="sysStatus">
+                                <span class="status-dot-sm online"></span> Checking...
+                            </span>
+                        </div>
+                        <div class="status-row">
+                            <span class="status-label">Documents</span>
+                            <span class="status-value" id="sysDocCount">--</span>
+                        </div>
+                        <div class="status-row">
+                            <span class="status-label">Model</span>
+                            <span class="status-value" id="sysModel">--</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Input Area -->
-            <div class="chat-input-container">
-                <form id="chatForm" class="chat-form">
-                    <div class="input-wrapper">
-                        <input 
-                            type="text" 
-                            id="messageInput" 
-                            placeholder="Ask about company policies..." 
-                            autocomplete="off"
-                            required
-                        >
-                        <button type="submit" id="sendButton">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="22" y1="2" x2="11" y2="13"></line>
-                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                            </svg>
-                        </button>
+            <div class="sidebar-footer">
+                <div class="sidebar-footer-text">Powered by RAG + Groq</div>
+            </div>
+        </aside>
+
+        <!-- Overlay for mobile sidebar -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="topbar">
+                <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <div class="topbar-center">
+                    <h1 class="topbar-title">Acme Policy Assistant</h1>
+                    <p class="topbar-subtitle">Ask anything about company policies</p>
+                </div>
+                <div class="topbar-status" id="topbarStatus">
+                    <span class="status-dot-sm online"></span>
+                    <span>Online</span>
+                </div>
+            </header>
+
+            <!-- Chat Area -->
+            <div class="chat-area">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Welcome card -->
+                    <div class="welcome-card" id="welcomeCard">
+                        <div class="welcome-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <h2>Welcome to Acme Policy Assistant</h2>
+                        <p>I can help you find answers about company policies, benefits, PTO, security, and more. Ask a question below or pick a topic from the sidebar.</p>
+                        <div class="welcome-chips">
+                            <button class="chip" data-query="How many vacation days do I get?">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                Vacation days
+                            </button>
+                            <button class="chip" data-query="What is the remote work policy?">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                                Remote work
+                            </button>
+                            <button class="chip" data-query="What employee benefits are available?">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                Benefits
+                            </button>
+                            <button class="chip" data-query="What are the password requirements?">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                Security rules
+                            </button>
+                            <button class="chip" data-query="How do I submit expense reports?">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                Expenses
+                            </button>
+                            <button class="chip" data-query="What are the company holidays?">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                Holidays
+                            </button>
+                        </div>
                     </div>
-                </form>
-                <p class="input-hint">Pro tip: Ask specific questions for better answers</p>
+                </div>
+
+                <!-- Input Area -->
+                <div class="chat-input-area">
+                    <form id="chatForm" class="chat-form">
+                        <div class="input-container">
+                            <textarea
+                                id="messageInput"
+                                placeholder="Ask about company policies..."
+                                rows="1"
+                                autocomplete="off"
+                                required
+                            ></textarea>
+                            <button type="submit" id="sendButton" aria-label="Send message">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="input-footer">
+                            <span class="input-hint">Press Enter to send, Shift+Enter for new line</span>
+                            <span class="char-count" id="charCount"></span>
+                        </div>
+                    </form>
+                </div>
             </div>
         </main>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <p>Powered by RAG + Groq | Acme Corporation © 2025</p>
-        </footer>
     </div>
 
     <script>
+        // ──────────── DOM References ────────────
         const chatForm = document.getElementById('chatForm');
         const messageInput = document.getElementById('messageInput');
         const chatMessages = document.getElementById('chatMessages');
         const sendButton = document.getElementById('sendButton');
+        const welcomeCard = document.getElementById('welcomeCard');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebarClose = document.getElementById('sidebarClose');
+        const charCount = document.getElementById('charCount');
 
-        // Add message to chat
-        function addMessage(content, isUser = false, sources = null, latency = null) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user' : 'assistant'}`;
-            
-            let messageHTML = '';
-            
-            if (isUser) {
-                messageHTML = `
-                    <div class="message-content">
-                        <div class="message-text">${escapeHtml(content)}</div>
-                    </div>
-                    <div class="message-avatar">👤</div>
-                `;
-            } else {
-                let sourcesHTML = '';
-                if (sources && sources.length > 0) {
-                    sourcesHTML = `
-                        <div class="message-sources">
-                            <div class="sources-header">📚 Sources:</div>
-                            <div class="sources-list">
-                                ${sources.map(s => `
-                                    <div class="source-item">
-                                        <span class="source-name">${escapeHtml(s.title)}</span>
-                                        <span class="source-file">${escapeHtml(s.source)}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    `;
-                }
-                
-                let latencyHTML = '';
-                if (latency) {
-                    latencyHTML = `<div class="message-latency">⚡ ${latency.toFixed(0)}ms</div>`;
-                }
-                
-                messageHTML = `
-                    <div class="message-avatar">🤖</div>
-                    <div class="message-content">
-                        <div class="message-text">${formatResponse(content)}</div>
-                        ${sourcesHTML}
-                        ${latencyHTML}
-                    </div>
-                `;
+        let isLoading = false;
+
+        // ──────────── Sidebar Toggle ────────────
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('visible');
+        }
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('visible');
+        }
+        menuBtn.addEventListener('click', openSidebar);
+        sidebarClose.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // ──────────── Auto-resize textarea ────────────
+        messageInput.addEventListener('input', () => {
+            messageInput.style.height = 'auto';
+            messageInput.style.height = Math.min(messageInput.scrollHeight, 150) + 'px';
+            const len = messageInput.value.length;
+            charCount.textContent = len > 0 ? `${len}` : '';
+        });
+
+        // ──────────── Keyboard shortcut ────────────
+        messageInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                chatForm.dispatchEvent(new Event('submit'));
             }
-            
-            messageDiv.innerHTML = messageHTML;
-            chatMessages.appendChild(messageDiv);
-            
-            // Scroll to bottom
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+        });
 
-        // Add loading indicator
-        function addLoading() {
-            const loadingDiv = document.createElement('div');
-            loadingDiv.className = 'message assistant loading';
-            loadingDiv.id = 'loadingMessage';
-            loadingDiv.innerHTML = `
-                <div class="message-avatar">🤖</div>
-                <div class="message-content">
-                    <div class="loading-dots">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-            `;
-            chatMessages.appendChild(loadingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Remove loading indicator
-        function removeLoading() {
-            const loading = document.getElementById('loadingMessage');
-            if (loading) loading.remove();
-        }
-
-        // Escape HTML to prevent XSS
+        // ──────────── Escape HTML ────────────
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
 
-        // Format response with markdown-like styling
+        // ──────────── Format markdown-like response ────────────
         function formatResponse(text) {
-            // Escape HTML first
             text = escapeHtml(text);
-            
-            // Convert markdown-like formatting
+            // Bold
             text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            // Italic
             text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
-            text = text.replace(/\[Source: (.*?)\]/g, '<span class="citation">[Source: $1]</span>');
-            
-            // Convert line breaks to paragraphs
-            text = text.split('\n\n').map(p => `<p>${p}</p>`).join('');
+            // Citations
+            text = text.replace(/\[Source:\s*(.*?)\]/g, '<span class="citation-tag"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> $1</span>');
+            // Numbered lists
+            text = text.replace(/^(\d+)\.\s+(.*)$/gm, '<li class="num-li"><span class="num-marker">$1.</span> $2</li>');
+            // Bullet lists
+            text = text.replace(/^[-*]\s+(.*)$/gm, '<li>$1</li>');
+            // Paragraphs
+            text = text.split('\n\n').map(p => {
+                p = p.trim();
+                if (!p) return '';
+                if (p.includes('<li')) return `<ul class="response-list">${p}</ul>`;
+                return `<p>${p}</p>`;
+            }).join('');
             text = text.replace(/\n/g, '<br>');
-            
             return text;
         }
 
-        // Handle form submission
-        chatForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const message = messageInput.value.trim();
-            if (!message) return;
-            
-            // Add user message
-            addMessage(message, true);
+        // ──────────── Add message to chat ────────────
+        function addMessage(content, isUser = false, sources = null, latency = null) {
+            // Hide welcome card on first message
+            if (welcomeCard) welcomeCard.style.display = 'none';
+
+            const msg = document.createElement('div');
+            msg.className = `msg ${isUser ? 'msg-user' : 'msg-bot'}`;
+
+            if (isUser) {
+                msg.innerHTML = `
+                    <div class="msg-bubble user-bubble">
+                        <div class="msg-text">${escapeHtml(content)}</div>
+                    </div>
+                    <div class="msg-avatar user-avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                `;
+            } else {
+                let sourcesHTML = '';
+                if (sources && sources.length > 0) {
+                    // Deduplicate sources by source filename
+                    const seen = new Set();
+                    const uniqueSources = sources.filter(s => {
+                        if (seen.has(s.source)) return false;
+                        seen.add(s.source);
+                        return true;
+                    });
+                    sourcesHTML = `
+                        <div class="sources-box">
+                            <button class="sources-toggle" onclick="this.parentElement.classList.toggle('expanded')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                <span>${uniqueSources.length} source${uniqueSources.length > 1 ? 's' : ''} referenced</span>
+                                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="sources-content">
+                                ${uniqueSources.map(s => `
+                                    <div class="source-card">
+                                        <div class="source-card-header">
+                                            <span class="source-title">${escapeHtml(s.title)}</span>
+                                            <span class="source-file">${escapeHtml(s.source)}</span>
+                                        </div>
+                                        <div class="source-snippet">${escapeHtml(s.snippet)}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                let latencyHTML = '';
+                if (latency != null) {
+                    const latencyClass = latency < 1000 ? 'fast' : latency < 2000 ? 'medium' : 'slow';
+                    latencyHTML = `<div class="msg-meta"><span class="latency-badge ${latencyClass}"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> ${latency.toFixed(0)}ms</span></div>`;
+                }
+
+                msg.innerHTML = `
+                    <div class="msg-avatar bot-avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"/><rect x="2" y="8" width="20" height="12" rx="2"/><path d="M6 12h.01"/><path d="M18 12h.01"/><path d="M9 16c.6.6 1.5 1 2.5 1h1c1 0 1.9-.4 2.5-1"/></svg>
+                    </div>
+                    <div class="msg-bubble bot-bubble">
+                        <div class="msg-text">${formatResponse(content)}</div>
+                        ${sourcesHTML}
+                        ${latencyHTML}
+                    </div>
+                `;
+            }
+
+            chatMessages.appendChild(msg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // ──────────── Loading indicator ────────────
+        function addLoading() {
+            const el = document.createElement('div');
+            el.className = 'msg msg-bot';
+            el.id = 'loadingMessage';
+            el.innerHTML = `
+                <div class="msg-avatar bot-avatar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"/><rect x="2" y="8" width="20" height="12" rx="2"/><path d="M6 12h.01"/><path d="M18 12h.01"/><path d="M9 16c.6.6 1.5 1 2.5 1h1c1 0 1.9-.4 2.5-1"/></svg>
+                </div>
+                <div class="msg-bubble bot-bubble">
+                    <div class="typing-indicator">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(el);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeLoading() {
+            const el = document.getElementById('loadingMessage');
+            if (el) el.remove();
+        }
+
+        // ──────────── Send Message ────────────
+        async function sendMessage(text) {
+            if (isLoading || !text.trim()) return;
+            const question = text.trim();
+
+            addMessage(question, true);
             messageInput.value = '';
-            
-            // Disable input while loading
+            messageInput.style.height = 'auto';
+            charCount.textContent = '';
+            isLoading = true;
             messageInput.disabled = true;
             sendButton.disabled = true;
             addLoading();
-            
+
             try {
-                const response = await fetch('/chat', {
+                const res = await fetch('/chat', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ message })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: question })
                 });
-                
-                const data = await response.json();
-                
+                const data = await res.json();
                 removeLoading();
-                
                 if (data.error) {
                     addMessage(`Sorry, something went wrong: ${data.error}`);
                 } else {
                     addMessage(data.answer, false, data.sources, data.latency_ms);
                 }
-            } catch (error) {
+            } catch (err) {
                 removeLoading();
-                addMessage('Sorry, I encountered an error. Please try again.');
-                console.error('Chat error:', error);
+                addMessage('Sorry, I encountered a network error. Please check your connection and try again.');
+                console.error('Chat error:', err);
             } finally {
-                // Re-enable input
+                isLoading = false;
                 messageInput.disabled = false;
                 sendButton.disabled = false;
                 messageInput.focus();
             }
+        }
+
+        // ──────────── Form submit ────────────
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            sendMessage(messageInput.value);
         });
 
-        // Focus input on load
+        // ──────────── Chip / Quick question clicks ────────────
+        document.querySelectorAll('[data-query]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                sendMessage(btn.getAttribute('data-query'));
+                closeSidebar();
+            });
+        });
+
+        // ──────────── Health check on load ────────────
+        async function checkHealth() {
+            try {
+                const res = await fetch('/health');
+                const data = await res.json();
+                document.getElementById('sysStatus').innerHTML = `<span class="status-dot-sm online"></span> Healthy`;
+                document.getElementById('sysDocCount').textContent = data.documents_indexed || '--';
+                document.getElementById('sysModel').textContent = data.model || '--';
+                document.getElementById('topbarStatus').innerHTML = `<span class="status-dot-sm online"></span><span>Online</span>`;
+            } catch {
+                document.getElementById('sysStatus').innerHTML = `<span class="status-dot-sm offline"></span> Offline`;
+                document.getElementById('topbarStatus').innerHTML = `<span class="status-dot-sm offline"></span><span>Offline</span>`;
+            }
+        }
+        checkHealth();
+
+        // Focus input
         messageInput.focus();
     </script>
 </body>

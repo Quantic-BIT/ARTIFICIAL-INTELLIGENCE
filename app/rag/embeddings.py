@@ -5,6 +5,8 @@ Handles the embedding model for converting text to vectors.
 Uses sentence-transformers (local, free) by default.
 """
 import os
+os.environ.setdefault('TORCH_DEVICE_BACKEND_AUTOLOAD', '0')
+os.environ.setdefault('TOKENIZERS_PARALLELISM', 'false')
 from typing import List
 import numpy as np
 

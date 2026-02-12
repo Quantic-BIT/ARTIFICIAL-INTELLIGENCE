@@ -4,17 +4,18 @@ This document describes how AI coding tools were used in the development of this
 
 ## AI Tools Used
 
-### 1. Claude (Anthropic)
+### 1. Windsurf Cascade (Codeium)
 
-**Primary Use**: Architecture design, code generation, and documentation
+**Primary Use**: Architecture design, code generation, debugging, and documentation
 
 **How it was used**:
 - Designed the overall project architecture and file structure
 - Generated the RAG pipeline components (ingestion, embeddings, vectorstore, chain)
 - Created the Flask web application with modern chat interface
 - Wrote comprehensive policy documents (corpus)
-- Developed the evaluation framework
+- Developed the evaluation framework and ran evaluations
 - Created all documentation files
+- Debugged runtime issues (PyTorch meta tensor compatibility, ChromaDB distance metrics)
 
 **Percentage of code**: ~95% of the codebase was generated with AI assistance
 
@@ -25,16 +26,16 @@ This document describes how AI coding tools were used in the development of this
 ## AI-Assisted Development Process
 
 ### Step 1: Requirements Analysis
-- Provided the AI with the project requirements (assignment PDF)
-- AI analyzed requirements and created an implementation plan
+- Provided Windsurf Cascade with the project requirements (assignment PDF)
+- Cascade analyzed requirements and created an implementation plan
 
 ### Step 2: Architecture Design
-- AI proposed the technology stack (Flask, ChromaDB, Groq, sentence-transformers)
+- Cascade proposed the technology stack (Flask, ChromaDB, Groq, sentence-transformers)
 - Designed the project structure and component interactions
 - Created the implementation plan for review
 
 ### Step 3: Code Generation
-- AI generated each component in sequence:
+- Cascade generated each component in sequence:
   1. Project foundation (requirements.txt, .gitignore, entry point)
   2. Policy documents (synthetic HR policies)
   3. RAG pipeline (ingestion → embeddings → vectorstore → chain)
@@ -43,7 +44,7 @@ This document describes how AI coding tools were used in the development of this
   6. Evaluation framework
 
 ### Step 4: Documentation
-- AI generated all required documentation:
+- Cascade generated all required documentation:
   - README.md
   - deployed.md
   - design-and-evaluation.md
@@ -51,12 +52,12 @@ This document describes how AI coding tools were used in the development of this
 
 ## Human Contributions
 
-While AI generated the majority of the code, human contributions included:
+While Cascade generated the majority of the code, human contributions included:
 
 1. **Project Direction**: Defining requirements and approving the implementation plan
 2. **Configuration**: Adding actual API keys and deployment settings
 3. **Testing**: Running the application locally and verifying functionality
-4. **Deployment**: Configuring Render and deploying the application
+4. **Deployment**: Running and testing the application locally
 5. **Review**: Reviewing and approving AI-generated code
 
 ## Ethical Considerations

@@ -2,40 +2,45 @@
 
 ## Live URL
 
-🌐 **[Acme Policy Assistant](https://your-app-name.onrender.com)**
+This application is designed to run locally. No cloud deployment is used for this project.
 
-> Replace the URL above with your actual Render deployment URL after deploying.
+## Running Locally
 
-## Deployment Instructions
+```bash
+# 1. Clone the repository
+git clone <repo-url>
+cd projectOne
 
-1. Push your code to GitHub
-2. Go to [Render Dashboard](https://dashboard.render.com)
-3. Click "New" → "Web Service"
-4. Connect your GitHub repository
-5. Configure:
-   - **Name**: acme-policy-assistant
-   - **Environment**: Python 3
-   - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `gunicorn run:app`
-6. Add Environment Variable:
-   - `GROQ_API_KEY`: Your Groq API key
-7. Click "Create Web Service"
-8. Wait for deployment to complete
-9. Update this file with your deployment URL
+# 2. Create virtual environment
+python -m venv venv
+source venv/bin/activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Set environment variables
+cp .env.example .env
+# Edit .env and add your GROQ_API_KEY
+
+# 5. Run the application
+python run.py
+```
+
+The app will be available at `http://localhost:5000`.
 
 ## Health Check
 
-Verify the deployment is working:
+Verify the application is running:
 
 ```bash
-curl https://your-app-name.onrender.com/health
+curl http://localhost:5000/health
 ```
 
 Expected response:
 ```json
 {
   "status": "healthy",
-  "documents_indexed": 83,
+  "documents_indexed": 54,
   "model": "llama-3.1-8b-instant"
 }
 ```

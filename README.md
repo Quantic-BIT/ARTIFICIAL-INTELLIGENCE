@@ -35,7 +35,7 @@ The system covers these Acme Corporation policies:
 | **Embeddings** | sentence-transformers (all-MiniLM-L6-v2) |
 | **Vector Store** | ChromaDB |
 | **Web Framework** | Flask |
-| **Deployment** | Render |
+| **Deployment** | Local (Gunicorn-ready) |
 
 ## 📦 Installation
 
@@ -163,33 +163,36 @@ python evaluation/evaluate.py
 This evaluates:
 - **Groundedness**: Are answers factually supported by retrieved documents?
 - **Citation Accuracy**: Do citations point to correct sources?
-- **Latency**: Response time metrics (p50, p95)
+- **Partial/Exact Match**: Token-level overlap with gold answers
+- **Latency**: Response time metrics (p50, p95) over on-topic queries
+- **Off-topic Handling**: Are irrelevant questions properly refused?
+
+Latest results: **91.7% groundedness**, **100% citation accuracy**, **78.3% partial match**, **100% off-topic handling**.
 
 Save results to JSON:
 ```bash
 python evaluation/evaluate.py --save
 ```
 
-## 🚀 Deployment
+Run with ablation study (compares k=3, k=5, k=8):
+```bash
+python evaluation/evaluate.py --save --ablation
+```
 
-### Deploy to Render
+## 🚀 Running in Production
 
-1. Create a new Web Service on [Render](https://render.com)
-2. Connect your GitHub repository
-3. Configure:
-   - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `gunicorn run:app`
-4. Add environment variable: `GROQ_API_KEY`
-5. Deploy!
+Use gunicorn for production:
+
+```bash
+gunicorn run:app --bind 0.0.0.0:5000 --timeout 120
+```
 
 ### CI/CD
 
 The project includes GitHub Actions that:
 - Run on push/PR to main
-- Install dependencies and run tests
-- Deploy to Render on success
-
-Add `RENDER_DEPLOY_HOOK` secret to enable auto-deployment.
+- Install dependencies and run import/ingestion checks
+- Lint with flake8
 
 ## 🧪 Testing
 

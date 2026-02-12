@@ -31,10 +31,10 @@ class VectorStore:
             settings=Settings(anonymized_telemetry=False)
         )
         
-        # Get or create collection
+        # Get or create collection with cosine distance
         self.collection = self.client.get_or_create_collection(
             name=self.COLLECTION_NAME,
-            metadata={"description": "Acme Corporation Policy Documents"}
+            metadata={"description": "Acme Corporation Policy Documents", "hnsw:space": "cosine"}
         )
         
         print(f"Vector store initialized. Documents in collection: {self.collection.count()}")
@@ -121,7 +121,7 @@ class VectorStore:
         self.client.delete_collection(self.COLLECTION_NAME)
         self.collection = self.client.create_collection(
             name=self.COLLECTION_NAME,
-            metadata={"description": "Acme Corporation Policy Documents"}
+            metadata={"description": "Acme Corporation Policy Documents", "hnsw:space": "cosine"}
         )
         print("Vector store cleared")
     

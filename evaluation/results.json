@@ -1,0 +1,568 @@
+{
+  "metrics": {
+    "answer_quality": {
+      "groundedness_pct": 91.7,
+      "citation_accuracy_pct": 100.0,
+      "partial_match_avg_pct": 82.3,
+      "exact_match_pct": 70.8,
+      "off_topic_handling_pct": 100.0
+    },
+    "latency": {
+      "num_queries": 24,
+      "min_ms": 607.6,
+      "avg_ms": 11288.5,
+      "p50_ms": 13229.5,
+      "p95_ms": 15308.1,
+      "max_ms": 15358.6
+    },
+    "summary": {
+      "total_questions": 29,
+      "successful_queries": 29,
+      "pass_rate_pct": 91.7
+    }
+  },
+  "per_question": [
+    {
+      "id": 1,
+      "question": "How many vacation days do new employees get?",
+      "category": "PTO",
+      "expected_answer": "New employees (0-2 years) receive 15 vacation days per year",
+      "actual_answer": "New employees with 0-2 years of service receive 15 vacation days per year, which accrues at 1.25 days per month. [Source: pto_policy.md]",
+      "sources_cited": [
+        "pto_policy.md",
+        "pto_policy.md",
+        "holiday_schedule.md",
+        "pto_policy.md",
+        "holiday_schedule.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 1.0,
+      "latency_ms": 1168.8
+    },
+    {
+      "id": 2,
+      "question": "How many sick days are provided per year?",
+      "category": "PTO",
+      "expected_answer": "10 sick days per year",
+      "actual_answer": "All full-time employees receive 10 sick days per year. Sick leave accrues at 0.83 days per month. [Source: pto_policy.md]",
+      "sources_cited": [
+        "pto_policy.md",
+        "pto_policy.md",
+        "pto_policy.md",
+        "holiday_schedule.md",
+        "holiday_schedule.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 1.0,
+      "latency_ms": 607.6
+    },
+    {
+      "id": 3,
+      "question": "Can unused vacation days be carried over to the next year?",
+      "category": "PTO",
+      "expected_answer": "Maximum 5 days can be carried over to the next calendar year",
+      "actual_answer": "Unused vacation days can be carried over to the next year, but with a maximum of 5 days. Unused days beyond the limit will be forfeited on December 31st. [Source: pto_policy.md]",
+      "sources_cited": [
+        "pto_policy.md",
+        "pto_policy.md",
+        "pto_policy.md",
+        "holiday_schedule.md",
+        "holiday_schedule.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.889,
+      "latency_ms": 809.7
+    },
+    {
+      "id": 4,
+      "question": "Can I work from home?",
+      "category": "Remote Work",
+      "expected_answer": "Yes, with manager approval, after 90 days of employment",
+      "actual_answer": "To work from home, you must meet the eligibility criteria, which includes having a role that is suitable for remote work, being in good standing, having manager approval, and having completed at least 90 days of employment (probation completion). [Source: remote_work_policy.md]",
+      "sources_cited": [
+        "remote_work_policy.md",
+        "remote_work_policy.md",
+        "remote_work_policy.md",
+        "remote_work_policy.md",
+        "remote_work_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.571,
+      "latency_ms": 969.9
+    },
+    {
+      "id": 5,
+      "question": "What internet speed is required for remote work?",
+      "category": "Remote Work",
+      "expected_answer": "Minimum 25 Mbps download speed",
+      "actual_answer": "Remote employees must have a reliable internet connection with a minimum download speed of 25 Mbps. \n\n[Source: remote_work_policy.md]",
+      "sources_cited": [
+        "remote_work_policy.md",
+        "remote_work_policy.md",
+        "remote_work_policy.md",
+        "remote_work_policy.md",
+        "remote_work_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 1.0,
+      "latency_ms": 3822.2
+    },
+    {
+      "id": 6,
+      "question": "Is there a home office stipend?",
+      "category": "Remote Work",
+      "expected_answer": "Yes, a one-time $500 stipend for home office setup and $50/month internet stipend",
+      "actual_answer": "Yes, there is a home office setup stipend. It is a one-time $500 stipend for new remote arrangements, for ergonomic equipment (desk, chair, monitor), and requires receipts and manager approval. [Source: remote_work_policy.md]",
+      "sources_cited": [
+        "remote_work_policy.md",
+        "expense_policy.md",
+        "remote_work_policy.md",
+        "benefits_policy.md",
+        "expense_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.833,
+      "latency_ms": 15335.9
+    },
+    {
+      "id": 7,
+      "question": "What is the daily meal limit when traveling?",
+      "category": "Expenses",
+      "expected_answer": "$90 daily maximum (breakfast $20, lunch $25, dinner $45)",
+      "actual_answer": "The daily meal limit when traveling for business is $90. \n\n[Source: expense_policy.md]",
+      "sources_cited": [
+        "expense_policy.md",
+        "expense_policy.md",
+        "expense_policy.md",
+        "pto_policy.md",
+        "expense_policy.md"
+      ],
+      "is_grounded": false,
+      "citation_correct": true,
+      "partial_match_score": 0.2,
+      "latency_ms": 14255.7
+    },
+    {
+      "id": 8,
+      "question": "What is the hotel limit for New York City?",
+      "category": "Expenses",
+      "expected_answer": "$250/night for Tier 1 cities including NYC",
+      "actual_answer": "The hotel limit for New York City is $250/night. [Source: expense_policy.md]",
+      "sources_cited": [
+        "expense_policy.md",
+        "expense_policy.md",
+        "expense_policy.md",
+        "expense_policy.md",
+        "remote_work_policy.md"
+      ],
+      "is_grounded": false,
+      "citation_correct": true,
+      "partial_match_score": 0.429,
+      "latency_ms": 13106.0
+    },
+    {
+      "id": 9,
+      "question": "How long do I have to submit expense reports?",
+      "category": "Expenses",
+      "expected_answer": "Within 30 days of incurring the expense",
+      "actual_answer": "You must submit expense reports within 30 days of incurring the expense. [Source: expense_policy.md]",
+      "sources_cited": [
+        "expense_policy.md",
+        "pto_policy.md",
+        "pto_policy.md",
+        "employee_handbook.md",
+        "expense_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 1.0,
+      "latency_ms": 14004.7
+    },
+    {
+      "id": 10,
+      "question": "What are the password requirements?",
+      "category": "Security",
+      "expected_answer": "Minimum 12 characters, with uppercase, lowercase, numbers, and special characters",
+      "actual_answer": "According to the Information Security Policy, all passwords must meet the following requirements:\n- Minimum length: 12 characters\n- Complexity: Must include uppercase letters (A-Z), lowercase letters (a-z), numbers (0-9), and special characters (!@#$%^&*)\n- No common patterns: Avoid dictionary words, your name, or \"password\"\n- Unique passwords: Do not reuse passwords across systems\n\n[Source: security_policy.md]",
+      "sources_cited": [
+        "security_policy.md",
+        "security_policy.md",
+        "security_policy.md",
+        "remote_work_policy.md",
+        "security_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.875,
+      "latency_ms": 13250.1
+    },
+    {
+      "id": 11,
+      "question": "How often must passwords be changed?",
+      "category": "Security",
+      "expected_answer": "Every 90 days",
+      "actual_answer": "Passwords must be changed every 90 days. \n\n[Source: security_policy.md]",
+      "sources_cited": [
+        "security_policy.md",
+        "security_policy.md",
+        "security_policy.md",
+        "pto_policy.md",
+        "security_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 1.0,
+      "latency_ms": 14146.4
+    },
+    {
+      "id": 12,
+      "question": "What happens after 5 failed login attempts?",
+      "category": "Security",
+      "expected_answer": "Account locks after 5 failed attempts, auto-unlocks after 30 minutes",
+      "actual_answer": "Accounts lock after 5 failed login attempts. Contact IT to unlock accounts. Automated unlock after 30 minutes. Repeated lockouts may trigger security review. [Source: security_policy.md]",
+      "sources_cited": [
+        "security_policy.md",
+        "security_policy.md",
+        "security_policy.md",
+        "security_policy.md",
+        "security_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.5,
+      "latency_ms": 12166.3
+    },
+    {
+      "id": 13,
+      "question": "Do I need to use VPN when working remotely?",
+      "category": "Security",
+      "expected_answer": "Yes, always use VPN to access company resources when working remotely",
+      "actual_answer": "Yes, when working remotely, employees must always use VPN to access company resources. [Source: security_policy.md]",
+      "sources_cited": [
+        "remote_work_policy.md",
+        "security_policy.md",
+        "remote_work_policy.md",
+        "remote_work_policy.md",
+        "remote_work_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 1.0,
+      "latency_ms": 12184.8
+    },
+    {
+      "id": 14,
+      "question": "What is the 401k company match?",
+      "category": "Benefits",
+      "expected_answer": "100% match on first 4% of salary",
+      "actual_answer": "The company match is 100% match on the first 4% of salary. [Source: benefits_policy.md]",
+      "sources_cited": [
+        "benefits_policy.md",
+        "benefits_policy.md",
+        "benefits_policy.md",
+        "employee_handbook.md",
+        "benefits_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 1.0,
+      "latency_ms": 14441.7
+    },
+    {
+      "id": 15,
+      "question": "How long is paid parental leave for birth parents?",
+      "category": "Benefits",
+      "expected_answer": "16 weeks paid at 100%",
+      "actual_answer": "Birth parents are entitled to 16 weeks of paid parental leave at 100%. [Source: Employee Benefits Policy (benefits_policy.md)]",
+      "sources_cited": [
+        "benefits_policy.md",
+        "pto_policy.md",
+        "pto_policy.md",
+        "pto_policy.md",
+        "benefits_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 1.0,
+      "latency_ms": 15150.3
+    },
+    {
+      "id": 16,
+      "question": "What is the tuition reimbursement limit?",
+      "category": "Benefits",
+      "expected_answer": "Up to $5,250/year for degree programs",
+      "actual_answer": "The tuition reimbursement limit is up to $5,250/year for degree programs. [Source: Employee Benefits Policy (benefits_policy.md)]",
+      "sources_cited": [
+        "benefits_policy.md",
+        "expense_policy.md",
+        "expense_policy.md",
+        "expense_policy.md",
+        "expense_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 1.0,
+      "latency_ms": 13208.8
+    },
+    {
+      "id": 17,
+      "question": "Is there a wellness stipend?",
+      "category": "Benefits",
+      "expected_answer": "$600/year wellness reimbursement for gym, fitness equipment, mental health apps",
+      "actual_answer": "Yes, there is a wellness stipend of $600/year, which can be used for gym memberships, fitness equipment, mental health apps, and other wellness-related expenses. [Source: benefits_policy.md]",
+      "sources_cited": [
+        "benefits_policy.md",
+        "benefits_policy.md",
+        "benefits_policy.md",
+        "benefits_policy.md",
+        "benefits_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.909,
+      "latency_ms": 14954.0
+    },
+    {
+      "id": 18,
+      "question": "How many paid holidays are there?",
+      "category": "Holidays",
+      "expected_answer": "12 paid holidays per year",
+      "actual_answer": "There are 12 paid holidays per year. \n[Source: holiday_schedule.md]",
+      "sources_cited": [
+        "holiday_schedule.md",
+        "holiday_schedule.md",
+        "holiday_schedule.md",
+        "holiday_schedule.md",
+        "holiday_schedule.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 1.0,
+      "latency_ms": 13103.4
+    },
+    {
+      "id": 19,
+      "question": "Is Juneteenth a company holiday?",
+      "category": "Holidays",
+      "expected_answer": "Yes, June 19th is a paid company holiday",
+      "actual_answer": "Yes, Juneteenth is a company holiday. It falls on June 19, 2025, which is a Thursday. [Source: holiday_schedule.md]",
+      "sources_cited": [
+        "holiday_schedule.md",
+        "holiday_schedule.md",
+        "holiday_schedule.md",
+        "holiday_schedule.md",
+        "holiday_schedule.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.667,
+      "latency_ms": 13924.9
+    },
+    {
+      "id": 20,
+      "question": "Are there floating holidays?",
+      "category": "Holidays",
+      "expected_answer": "Yes, 2 floating holidays per year for religious observances or personal celebrations",
+      "actual_answer": "Yes, employees receive 2 floating holidays per year. They can be used for religious observances, personal celebrations, or any purpose, and must be scheduled with manager approval. Floating holidays do not carry over to the next year and are not paid out upon termination. [Source: holiday_schedule.md]",
+      "sources_cited": [
+        "holiday_schedule.md",
+        "holiday_schedule.md",
+        "holiday_schedule.md",
+        "holiday_schedule.md",
+        "holiday_schedule.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 1.0,
+      "latency_ms": 14439.2
+    },
+    {
+      "id": 21,
+      "question": "What is the company's harassment policy?",
+      "category": "Code of Conduct",
+      "expected_answer": "Zero tolerance policy for harassment, all reports investigated, confirmed harassment results in disciplinary action up to termination",
+      "actual_answer": "Acme Corporation has a zero-tolerance policy for harassment, which includes unwelcome conduct based on protected characteristics such as race, color, or ethnicity, gender, gender identity, or sexual orientation, age, religion, disability, national origin, or any other protected characteristic. All reports of harassment will be investigated promptly, and confirmed harassment will result in disciplinary action up to termination. Retaliation against reporters is prohibited. [Source: code_of_conduct.md]",
+      "sources_cited": [
+        "code_of_conduct.md",
+        "code_of_conduct.md",
+        "code_of_conduct.md",
+        "code_of_conduct.md",
+        "code_of_conduct.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.923,
+      "latency_ms": 12490.9
+    },
+    {
+      "id": 22,
+      "question": "What is the gift acceptance limit?",
+      "category": "Code of Conduct",
+      "expected_answer": "Gifts under $100 may be accepted, gifts over $100 must be reported to compliance",
+      "actual_answer": "Gifts under $100 may be accepted. Gifts over $100 must be reported to compliance. [Source: Code of Conduct (code_of_conduct.md)]",
+      "sources_cited": [
+        "code_of_conduct.md",
+        "expense_policy.md",
+        "expense_policy.md",
+        "expense_policy.md",
+        "benefits_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 1.0,
+      "latency_ms": 15358.6
+    },
+    {
+      "id": 23,
+      "question": "How long is the probationary period?",
+      "category": "Employment",
+      "expected_answer": "90 days for all new employees",
+      "actual_answer": "The probationary period is 90 days. During this time, performance will be closely monitored, regular feedback sessions will be conducted, and employment may be terminated at will by either party. [Source: employee_handbook.md]",
+      "sources_cited": [
+        "employee_handbook.md",
+        "pto_policy.md",
+        "pto_policy.md",
+        "pto_policy.md",
+        "benefits_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.2,
+      "latency_ms": 14849.6
+    },
+    {
+      "id": 24,
+      "question": "How much notice should I give when resigning?",
+      "category": "Employment",
+      "expected_answer": "2 weeks for non-management, 4 weeks for management",
+      "actual_answer": "According to the Employee Handbook, employees wishing to resign should provide:\n- **Non-management**: 2 weeks written notice\n- **Management**: 4 weeks written notice\n\n[Source: employee_handbook.md]",
+      "sources_cited": [
+        "employee_handbook.md",
+        "employee_handbook.md",
+        "pto_policy.md",
+        "pto_policy.md",
+        "pto_policy.md"
+      ],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.75,
+      "latency_ms": 13174.8
+    },
+    {
+      "id": 25,
+      "question": "What is the best pizza place nearby?",
+      "category": "Off-topic",
+      "expected_answer": "OFF_TOPIC",
+      "actual_answer": "I can only answer questions about Acme Corporation's company policies (such as PTO, benefits, remote work, security, expenses, etc.). For other questions, please contact HR at hr@acmecorp.com.",
+      "sources_cited": [],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.0,
+      "latency_ms": 53.6
+    },
+    {
+      "id": 26,
+      "question": "Can you help me write a Python script?",
+      "category": "Off-topic",
+      "expected_answer": "OFF_TOPIC",
+      "actual_answer": "I can only answer questions about Acme Corporation's company policies (such as PTO, benefits, remote work, security, expenses, etc.). For other questions, please contact HR at hr@acmecorp.com.",
+      "sources_cited": [],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.0,
+      "latency_ms": 16.0
+    },
+    {
+      "id": 27,
+      "question": "What is the weather like today?",
+      "category": "Off-topic",
+      "expected_answer": "OFF_TOPIC",
+      "actual_answer": "I can only answer questions about Acme Corporation's company policies (such as PTO, benefits, remote work, security, expenses, etc.). For other questions, please contact HR at hr@acmecorp.com.",
+      "sources_cited": [],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.0,
+      "latency_ms": 12.5
+    },
+    {
+      "id": 28,
+      "question": "Tell me a joke about cats.",
+      "category": "Off-topic",
+      "expected_answer": "OFF_TOPIC",
+      "actual_answer": "I can only answer questions about Acme Corporation's company policies (such as PTO, benefits, remote work, security, expenses, etc.). For other questions, please contact HR at hr@acmecorp.com.",
+      "sources_cited": [],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.0,
+      "latency_ms": 17.9
+    },
+    {
+      "id": 29,
+      "question": "Who won the last Super Bowl?",
+      "category": "Off-topic",
+      "expected_answer": "OFF_TOPIC",
+      "actual_answer": "I can only answer questions about Acme Corporation's company policies (such as PTO, benefits, remote work, security, expenses, etc.). For other questions, please contact HR at hr@acmecorp.com.",
+      "sources_cited": [],
+      "is_grounded": true,
+      "citation_correct": true,
+      "partial_match_score": 0.0,
+      "latency_ms": 12.9
+    }
+  ],
+  "category_breakdown": {
+    "Benefits": {
+      "total": 4,
+      "grounded": 4,
+      "citation_correct": 4,
+      "avg_partial_match": 97.7
+    },
+    "Code of Conduct": {
+      "total": 2,
+      "grounded": 2,
+      "citation_correct": 2,
+      "avg_partial_match": 96.2
+    },
+    "Employment": {
+      "total": 2,
+      "grounded": 2,
+      "citation_correct": 2,
+      "avg_partial_match": 47.5
+    },
+    "Expenses": {
+      "total": 3,
+      "grounded": 1,
+      "citation_correct": 3,
+      "avg_partial_match": 54.3
+    },
+    "Holidays": {
+      "total": 3,
+      "grounded": 3,
+      "citation_correct": 3,
+      "avg_partial_match": 88.9
+    },
+    "PTO": {
+      "total": 3,
+      "grounded": 3,
+      "citation_correct": 3,
+      "avg_partial_match": 96.3
+    },
+    "Remote Work": {
+      "total": 3,
+      "grounded": 3,
+      "citation_correct": 3,
+      "avg_partial_match": 80.2
+    },
+    "Security": {
+      "total": 4,
+      "grounded": 4,
+      "citation_correct": 4,
+      "avg_partial_match": 84.4
+    }
+  }
+}

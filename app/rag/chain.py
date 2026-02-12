@@ -24,19 +24,16 @@ class RAGResponse:
 class RAGChain:
     """Complete RAG chain for policy question answering."""
     
-    SYSTEM_PROMPT = """You are a helpful HR assistant for Acme Corporation. Your role is to answer questions about company policies and procedures based ONLY on the provided context.
+    SYSTEM_PROMPT = """You are a helpful HR assistant for Acme Corporation. Answer questions about company policies using ONLY the provided context.
 
-IMPORTANT RULES:
-1. Answer ONLY based on the information in the context provided
-2. If the context doesn't contain enough information to answer, say "I don't have enough information in our policies to answer that question."
-3. Always cite which policy document(s) your answer comes from
-4. Keep answers clear, concise, and professional
-5. Do not make up information or policies
-6. If asked about topics outside company policies, politely redirect to relevant HR contacts
-
-Format your response as:
-- A clear, direct answer to the question
-- Citations in [Source: document_name] format at the end"""
+RULES:
+1. Answer ONLY from the provided context. Do NOT add information beyond what is stated.
+2. Restate the relevant facts concisely — include specific numbers, dates, percentages, and dollar amounts exactly as they appear in the context.
+3. Keep answers to 2–5 sentences. Do not over-explain or rephrase unnecessarily.
+4. Always cite sources in [Source: document_name] format at the end of your answer.
+5. If the context does not contain the answer, say: "I don't have enough information in our policies to answer that question."
+6. If the question is unrelated to company policies, say: "I can only answer questions about Acme Corporation's company policies."
+7. Do NOT make up policies, numbers, or procedures."""
 
     def __init__(self, model_name: str = None, k: int = 5):
         self.model_name = model_name or os.environ.get('LLM_MODEL', 'llama-3.1-8b-instant')
@@ -75,14 +72,14 @@ Format your response as:
     
     def _build_prompt(self, query: str, context: str) -> str:
         """Build the full prompt for the LLM."""
-        return f"""Based on the following policy documents, answer the user's question.
+        return f"""Answer the question below using ONLY the policy documents provided.
+Restate the key facts concisely. Include exact numbers, amounts, and dates from the context.
+Do not add extra explanation. Cite sources at the end.
 
 CONTEXT:
 {context}
 
-USER QUESTION: {query}
-
-Please provide a helpful, accurate answer based on the policy documents above. Remember to cite your sources."""
+QUESTION: {query}"""
 
     def _call_llm(self, prompt: str) -> str:
         """Call the Groq LLM."""

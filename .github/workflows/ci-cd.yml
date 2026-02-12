@@ -44,19 +44,3 @@ jobs:
         pip install flake8
         flake8 app/ --count --select=E9,F63,F7,F82 --show-source --statistics
 
-  deploy:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    
-    steps:
-    - name: Deploy to Render
-      env:
-        RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
-      run: |
-        if [ -n "$RENDER_DEPLOY_HOOK" ]; then
-          curl -X POST "$RENDER_DEPLOY_HOOK"
-          echo "✅ Deployment triggered on Render"
-        else
-          echo "⚠️ RENDER_DEPLOY_HOOK not set, skipping deployment"
-        fi

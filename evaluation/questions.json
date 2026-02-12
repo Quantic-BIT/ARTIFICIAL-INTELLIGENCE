@@ -174,6 +174,34 @@
             "question": "What is the best pizza place nearby?",
             "expected_answer": "OFF_TOPIC",
             "source": null
+        },
+        {
+            "id": 26,
+            "category": "Off-topic",
+            "question": "Can you help me write a Python script?",
+            "expected_answer": "OFF_TOPIC",
+            "source": null
+        },
+        {
+            "id": 27,
+            "category": "Off-topic",
+            "question": "What is the weather like today?",
+            "expected_answer": "OFF_TOPIC",
+            "source": null
+        },
+        {
+            "id": 28,
+            "category": "Off-topic",
+            "question": "Tell me a joke about cats.",
+            "expected_answer": "OFF_TOPIC",
+            "source": null
+        },
+        {
+            "id": 29,
+            "category": "Off-topic",
+            "question": "Who won the last Super Bowl?",
+            "expected_answer": "OFF_TOPIC",
+            "source": null
         }
     ]
 }
