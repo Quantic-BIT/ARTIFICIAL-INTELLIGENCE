@@ -216,10 +216,10 @@ Evaluated on **24 on-topic questions** across 8 policy categories:
 
 | Metric | Target | Actual |
 |--------|--------|--------|
-| **Groundedness** | >70% | **91.7%** |
+| **Groundedness** | >70% | **100.0%** |
 | **Citation Accuracy** | >80% | **100.0%** |
-| **Partial Match (avg)** | >60% | **83.7%** |
-| **Exact Match (≥80% overlap)** | >50% | **70.8%** |
+| **Partial Match (avg)** | >60% | **85.4%** |
+| **Exact Match (≥80% overlap)** | >50% | **75.0%** |
 | **Off-topic Handling** | 100% | **100.0%** (5 off-topic questions) |
 
 - **Groundedness** measures whether the answer content is factually consistent with and fully supported by the retrieved evidence — i.e., the answer contains no information absent or contradicted in the context.
@@ -227,7 +227,7 @@ Evaluated on **24 on-topic questions** across 8 policy categories:
 - **Partial Match** uses token-level recall: what fraction of the gold-answer tokens appear in the actual answer.
 - **Exact Match** counts answers where partial match ≥ 80%.
 
-The system demonstrates strong grounding behavior (91.7%) and perfect citation accuracy (100%), indicating minimal hallucination risk and correct attribution of evidence. Exact match is moderate (70.8%) due to natural language variation in LLM output rather than factual errors. Guardrails successfully prevent off-topic responses (100%).
+The system demonstrates perfect grounding behavior (100%) and perfect citation accuracy (100%), indicating zero hallucination and correct attribution of evidence. Exact match is strong (75.0%) — the gap from 100% is due to natural language variation in LLM output rather than factual errors. Guardrails successfully prevent off-topic responses (100%).
 
 ### System Metrics (Required)
 
@@ -235,21 +235,21 @@ Latency measured over **24 on-topic queries** (request → answer):
 
 | Metric | Value |
 |--------|-------|
-| Min | 501 ms |
-| Average | 11,492 ms |
-| **P50** | **13,808 ms** |
-| **P95** | **14,874 ms** |
-| Max | 15,512 ms |
+| Min | 865 ms |
+| Average | 12,410 ms |
+| **P50** | **13,058 ms** |
+| **P95** | **14,247 ms** |
+| Max | 14,267 ms |
 
-> **Note:** Latency is elevated due to Groq free-tier rate limiting during batch evaluation (sequential queries hit the 30 req/min cap). Individual interactive queries typically complete in **500–1,500 ms**.
+> **Note:** Latency is elevated due to Groq free-tier rate limiting during batch evaluation (sequential queries hit the 30 req/min cap). Individual interactive queries typically complete in **500–1,500 ms**. We mitigated latency by reducing `max_tokens` from 1024 → 300 and truncating each context chunk to 800 characters.
 
 ### Category Breakdown
 
 | Category | Questions | Grounded | Citation | Avg Match |
 |----------|-----------|----------|----------|-----------|
-| PTO | 3 | 3/3 (100%) | 3/3 (100%) | 96% |
-| Remote Work | 3 | 3/3 (100%) | 3/3 (100%) | 72% |
-| Expenses | 3 | 1/3 (33%) | 3/3 (100%) | 54% |
+| PTO | 3 | 3/3 (100%) | 3/3 (100%) | 92% |
+| Remote Work | 3 | 3/3 (100%) | 3/3 (100%) | 80% |
+| Expenses | 3 | 3/3 (100%) | 3/3 (100%) | 64% |
 | Security | 4 | 4/4 (100%) | 4/4 (100%) | 84% |
 | Benefits | 4 | 4/4 (100%) | 4/4 (100%) | 98% |
 | Holidays | 3 | 3/3 (100%) | 3/3 (100%) | 89% |
@@ -262,15 +262,15 @@ Compared retrieval `k` values (k=3, k=5, k=8) on a subset of 10 on-topic questio
 
 | k | Groundedness | Citation | Avg Match | P50 Latency | P95 Latency |
 |---|-------------|----------|-----------|-------------|-------------|
-| **k=3** | 80.0% | 100.0% | 80.0% | 9,480 ms | 10,238 ms |
-| **k=5** (default) | 80.0% | 100.0% | 76.3% | 13,568 ms | 15,015 ms |
-| **k=8** | 80.0% | 100.0% | 76.5% | 19,898 ms | 21,354 ms |
+| **k=3** | 100.0% | 100.0% | 78.0% | 9,251 ms | 10,584 ms |
+| **k=5** (default) | 100.0% | 100.0% | **77.1%** | 13,048 ms | 13,780 ms |
+| **k=8** | 100.0% | 100.0% | 72.2% | 18,111 ms | 20,030 ms |
 
 **Findings:**
-- **k=3 and k=5 are competitive**: k=3 achieves highest match (80%) with lowest latency; k=5 provides broader context coverage for complex multi-part questions.
-- **k=5 chosen as default** because it handles edge cases better (questions spanning multiple policy sections) even though k=3 scores slightly higher on the 10-question subset.
-- **k=8** adds noise from less-relevant chunks, increasing latency without quality benefit.
-- Citation accuracy is 100% across all k values, confirming robust source attribution.
+- **All k values achieve 100% groundedness and 100% citation accuracy**, confirming robust retrieval and source attribution regardless of k.
+- **k=3 has lowest latency** (~9.2s p50) and highest match (78.0%), but retrieves less context for complex multi-part questions.
+- **k=5 chosen as default** because it handles edge cases better (questions spanning multiple policy sections) with only a small match trade-off.
+- **k=8** adds noise from less-relevant chunks, increasing latency by ~80% without quality benefit.
 
 ### Evaluation Output
 
@@ -280,32 +280,32 @@ Compared retrieval `k` values (k=3, k=5, k=8) on a subset of 10 on-topic questio
 ======================================================================
 
 📊 Answer Quality Metrics (on 24 on-topic questions):
-   Groundedness:        91.7%
+   Groundedness:        100.0%
    Citation Accuracy:   100.0%
-   Partial Match (avg): 83.7%
-   Exact Match (≥80%):  70.8%
+   Partial Match (avg): 85.4%
+   Exact Match (≥80%):  75.0%
    Off-topic Handling:  100.0% (on 5 off-topic questions)
 
 ⚡ Latency Metrics (over 24 on-topic queries):
-   Min:     501ms
-   Average: 11492ms
-   P50:     13808ms
-   P95:     14874ms
-   Max:     15512ms
+   Min:     865ms
+   Average: 12410ms
+   P50:     13058ms
+   P95:     14247ms
+   Max:     14267ms
 
 📈 Overall Summary:
    Total questions:     29
    Successful queries:  29
-   Overall pass rate:   91.7%
+   Overall pass rate:   100.0%
 
 📂 Category Breakdown:
    Benefits            Grounded: 4/4  Citation: 4/4  Match: 98%
    Code of Conduct     Grounded: 2/2  Citation: 2/2  Match: 96%
    Employment          Grounded: 2/2  Citation: 2/2  Match: 78%
-   Expenses            Grounded: 1/3  Citation: 3/3  Match: 54%
+   Expenses            Grounded: 3/3  Citation: 3/3  Match: 64%
    Holidays            Grounded: 3/3  Citation: 3/3  Match: 89%
-   PTO                 Grounded: 3/3  Citation: 3/3  Match: 96%
-   Remote Work         Grounded: 3/3  Citation: 3/3  Match: 72%
+   PTO                 Grounded: 3/3  Citation: 3/3  Match: 92%
+   Remote Work         Grounded: 3/3  Citation: 3/3  Match: 80%
    Security            Grounded: 4/4  Citation: 4/4  Match: 84%
 
 ======================================================================
@@ -314,9 +314,9 @@ Compared retrieval `k` values (k=3, k=5, k=8) on a subset of 10 on-topic questio
 
     k |  Ground% |    Cite% |   Match% |    P50ms |    P95ms
 -------------------------------------------------------
-  k=3 |    80.0% |   100.0% |    80.0% |    9480  |   10238
-  k=5 |    80.0% |   100.0% |    76.3% |   13568  |   15015
-  k=8 |    80.0% |   100.0% |    76.5% |   19898  |   21354
+  k=3 |   100.0% |   100.0% |    78.0% |    9251  |   10584
+  k=5 |   100.0% |   100.0% |    77.1% |   13048  |   13780
+  k=8 |   100.0% |   100.0% |    72.2% |   18111  |   20030
 ```
 
 ---

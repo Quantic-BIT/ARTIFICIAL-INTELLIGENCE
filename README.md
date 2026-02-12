@@ -167,7 +167,7 @@ This evaluates:
 - **Latency**: Response time metrics (p50, p95) over on-topic queries
 - **Off-topic Handling**: Are irrelevant questions properly refused?
 
-Latest results: **91.7% groundedness**, **100% citation accuracy**, **83.7% partial match**, **70.8% exact match**, **100% off-topic handling**.
+Latest results: **100% groundedness**, **100% citation accuracy**, **85.4% partial match**, **75.0% exact match**, **100% off-topic handling**.
 
 Save results to JSON:
 ```bash

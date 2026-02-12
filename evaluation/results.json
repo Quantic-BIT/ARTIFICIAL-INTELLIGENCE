@@ -1,24 +1,24 @@
 {
   "metrics": {
     "answer_quality": {
-      "groundedness_pct": 95.8,
+      "groundedness_pct": 100.0,
       "citation_accuracy_pct": 100.0,
-      "partial_match_avg_pct": 83.2,
-      "exact_match_pct": 70.8,
+      "partial_match_avg_pct": 85.4,
+      "exact_match_pct": 75.0,
       "off_topic_handling_pct": 100.0
     },
     "latency": {
       "num_queries": 24,
-      "min_ms": 514.5,
-      "avg_ms": 10671.3,
-      "p50_ms": 12988.6,
-      "p95_ms": 14374.0,
-      "max_ms": 14545.0
+      "min_ms": 865.0,
+      "avg_ms": 12409.5,
+      "p50_ms": 13057.8,
+      "p95_ms": 14247.2,
+      "max_ms": 14267.3
     },
     "summary": {
       "total_questions": 29,
       "successful_queries": 29,
-      "pass_rate_pct": 95.8
+      "pass_rate_pct": 100.0
     }
   },
   "per_question": [
@@ -38,14 +38,14 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.875,
-      "latency_ms": 1261.1
+      "latency_ms": 865.0
     },
     {
       "id": 2,
       "question": "How many sick days are provided per year?",
       "category": "PTO",
       "expected_answer": "10 sick days per year",
-      "actual_answer": "All full-time employees receive 10 sick days per year. Sick leave accrues at 0.83 days per month and does not carry over to the next year. [Source: pto_policy.md]",
+      "actual_answer": "All full-time employees receive 10 sick days per year. Sick leave accrues at 0.83 days per month. [Source: pto_policy.md]",
       "sources_cited": [
         "pto_policy.md",
         "pto_policy.md",
@@ -56,7 +56,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 1.0,
-      "latency_ms": 564.8
+      "latency_ms": 9739.2
     },
     {
       "id": 3,
@@ -74,14 +74,14 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.889,
-      "latency_ms": 1161.8
+      "latency_ms": 12099.4
     },
     {
       "id": 4,
       "question": "Can I work from home?",
       "category": "Remote Work",
       "expected_answer": "Yes, with manager approval, after 90 days of employment",
-      "actual_answer": "To work from home, you must meet the eligibility criteria, which includes having a role that is suitable for remote work, being in good standing, having manager approval, and having completed at least 90 days of employment (probation completion). [Source: remote_work_policy.md]",
+      "actual_answer": "To work from home, you must meet the eligibility criteria, which includes being in a role suitable for remote work, having a good performance history, manager approval, and completing at least 90 days of employment (probation completion). [Source: remote_work_policy.md]",
       "sources_cited": [
         "remote_work_policy.md",
         "remote_work_policy.md",
@@ -92,14 +92,14 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.571,
-      "latency_ms": 924.2
+      "latency_ms": 12371.0
     },
     {
       "id": 5,
       "question": "What internet speed is required for remote work?",
       "category": "Remote Work",
       "expected_answer": "Minimum 25 Mbps download speed",
-      "actual_answer": "Employees must maintain a dedicated workspace with a reliable internet connection of minimum 25 Mbps download. \n\n[Source: remote_work_policy.md]",
+      "actual_answer": "Remote employees must have a workspace with a reliable internet connection with a minimum download speed of 25 Mbps. \n\n[Source: remote_work_policy.md]",
       "sources_cited": [
         "remote_work_policy.md",
         "remote_work_policy.md",
@@ -109,8 +109,8 @@
       ],
       "is_grounded": true,
       "citation_correct": true,
-      "partial_match_score": 0.75,
-      "latency_ms": 514.5
+      "partial_match_score": 1.0,
+      "latency_ms": 12374.3
     },
     {
       "id": 6,
@@ -128,7 +128,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.833,
-      "latency_ms": 14330.1
+      "latency_ms": 13058.6
     },
     {
       "id": 7,
@@ -143,17 +143,17 @@
         "pto_policy.md",
         "expense_policy.md"
       ],
-      "is_grounded": false,
+      "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.2,
-      "latency_ms": 13217.8
+      "latency_ms": 12930.0
     },
     {
       "id": 8,
       "question": "What is the hotel limit for New York City?",
       "category": "Expenses",
       "expected_answer": "$250/night for Tier 1 cities including NYC",
-      "actual_answer": "The hotel limit for New York City is $250/night. [Source: expense_policy.md]",
+      "actual_answer": "The hotel limit for New York City is $250/night. This is for Tier 1 cities, which also include San Francisco and Los Angeles. [Source: expense_policy.md]",
       "sources_cited": [
         "expense_policy.md",
         "expense_policy.md",
@@ -163,8 +163,8 @@
       ],
       "is_grounded": true,
       "citation_correct": true,
-      "partial_match_score": 0.429,
-      "latency_ms": 13172.5
+      "partial_match_score": 0.714,
+      "latency_ms": 14267.3
     },
     {
       "id": 9,
@@ -182,14 +182,14 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 1.0,
-      "latency_ms": 12836.4
+      "latency_ms": 13057.0
     },
     {
       "id": 10,
       "question": "What are the password requirements?",
       "category": "Security",
       "expected_answer": "Minimum 12 characters, with uppercase, lowercase, numbers, and special characters",
-      "actual_answer": "According to the Information Security Policy, all passwords must meet the following requirements:\n- Minimum length: 12 characters\n- Complexity: Must include uppercase letters (A-Z), lowercase letters (a-z), numbers (0-9), and special characters (!@#$%^&*)\n- No common patterns: Avoid dictionary words, your name, or \"password\"\n- Unique passwords: Do not reuse passwords across systems\n\n[Source: security_policy.md]",
+      "actual_answer": "According to the Information Security Policy, all passwords must meet the following requirements:\n\n- Minimum length: 12 characters\n- Complexity: Must include uppercase letters (A-Z), lowercase letters (a-z), numbers (0-9), and special characters (!@#$%^&*)\n- No common patterns: Avoid dictionary words, your name, or \"password\"\n- Unique passwords: Do not reuse passwords across systems\n\n[Source: security_policy.md]",
       "sources_cited": [
         "security_policy.md",
         "security_policy.md",
@@ -200,7 +200,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.875,
-      "latency_ms": 12889.9
+      "latency_ms": 12084.7
     },
     {
       "id": 11,
@@ -218,7 +218,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 1.0,
-      "latency_ms": 13121.5
+      "latency_ms": 12857.2
     },
     {
       "id": 12,
@@ -236,14 +236,14 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.5,
-      "latency_ms": 12274.0
+      "latency_ms": 13202.5
     },
     {
       "id": 13,
       "question": "Do I need to use VPN when working remotely?",
       "category": "Security",
       "expected_answer": "Yes, always use VPN to access company resources when working remotely",
-      "actual_answer": "Yes, when working remotely, you must always use the company VPN to access company resources. [Source: security_policy.md]",
+      "actual_answer": "Yes, when working remotely, employees must always use the company VPN to access company resources. [Source: security_policy.md]",
       "sources_cited": [
         "remote_work_policy.md",
         "security_policy.md",
@@ -254,14 +254,14 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 1.0,
-      "latency_ms": 11988.0
+      "latency_ms": 12060.7
     },
     {
       "id": 14,
       "question": "What is the 401k company match?",
       "category": "Benefits",
       "expected_answer": "100% match on first 4% of salary",
-      "actual_answer": "The 401(k) company match is 100% match on the first 4% of salary. [Source: Employee Benefits Policy (benefits_policy.md)]",
+      "actual_answer": "The 401(k) company match is 100% match on the first 4% of salary. \n\n[Source: Employee Benefits Policy (benefits_policy.md)]",
       "sources_cited": [
         "benefits_policy.md",
         "benefits_policy.md",
@@ -272,7 +272,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 1.0,
-      "latency_ms": 14097.6
+      "latency_ms": 13101.0
     },
     {
       "id": 15,
@@ -290,14 +290,14 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 1.0,
-      "latency_ms": 14545.0
+      "latency_ms": 13851.4
     },
     {
       "id": 16,
       "question": "What is the tuition reimbursement limit?",
       "category": "Benefits",
       "expected_answer": "Up to $5,250/year for degree programs",
-      "actual_answer": "The tuition reimbursement limit is up to $5,250/year for degree programs. [Source: Employee Benefits Policy (benefits_policy.md)]",
+      "actual_answer": "The tuition reimbursement limit is up to $5,250/year for degree programs. [Source: benefits_policy.md]",
       "sources_cited": [
         "benefits_policy.md",
         "expense_policy.md",
@@ -308,7 +308,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 1.0,
-      "latency_ms": 13435.6
+      "latency_ms": 13927.0
     },
     {
       "id": 17,
@@ -326,7 +326,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.909,
-      "latency_ms": 12889.0
+      "latency_ms": 14205.4
     },
     {
       "id": 18,
@@ -344,14 +344,14 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 1.0,
-      "latency_ms": 13464.0
+      "latency_ms": 12053.2
     },
     {
       "id": 19,
       "question": "Is Juneteenth a company holiday?",
       "category": "Holidays",
       "expected_answer": "Yes, June 19th is a paid company holiday",
-      "actual_answer": "Yes, Juneteenth is a company holiday. It is observed on June 19, 2025, which is a Thursday. [Source: Company Holiday Schedule 2025 (holiday_schedule.md)]",
+      "actual_answer": "Yes, Juneteenth is a company holiday. It is observed on June 19, 2025, which is a Thursday. [Source: holiday_schedule.md]",
       "sources_cited": [
         "holiday_schedule.md",
         "holiday_schedule.md",
@@ -362,14 +362,14 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.667,
-      "latency_ms": 13378.3
+      "latency_ms": 13065.8
     },
     {
       "id": 20,
       "question": "Are there floating holidays?",
       "category": "Holidays",
       "expected_answer": "Yes, 2 floating holidays per year for religious observances or personal celebrations",
-      "actual_answer": "Yes, employees receive 2 floating holidays per year. They can be used for religious observances, personal celebrations, or any purpose, and must be scheduled with manager approval. Floating holidays do not carry over to the next year and are not paid out upon termination. [Source: holiday_schedule.md]",
+      "actual_answer": "Yes, employees receive 2 floating holidays per year. They can be used for religious observances, personal celebrations, or any purpose, and must be scheduled with manager approval. [Source: holiday_schedule.md]",
       "sources_cited": [
         "holiday_schedule.md",
         "holiday_schedule.md",
@@ -380,7 +380,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 1.0,
-      "latency_ms": 12704.6
+      "latency_ms": 12080.6
     },
     {
       "id": 21,
@@ -398,14 +398,14 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.923,
-      "latency_ms": 12747.0
+      "latency_ms": 13111.5
     },
     {
       "id": 22,
       "question": "What is the gift acceptance limit?",
       "category": "Code of Conduct",
       "expected_answer": "Gifts under $100 may be accepted, gifts over $100 must be reported to compliance",
-      "actual_answer": "Gifts under $100 may be accepted, while gifts over $100 must be reported to compliance. [Source: code_of_conduct.md]",
+      "actual_answer": "Gifts under $100 may be accepted. Gifts over $100 must be reported to compliance. \n\n[Source: code_of_conduct.md]",
       "sources_cited": [
         "code_of_conduct.md",
         "expense_policy.md",
@@ -416,14 +416,14 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 1.0,
-      "latency_ms": 14381.8
+      "latency_ms": 14103.7
     },
     {
       "id": 23,
       "question": "How long is the probationary period?",
       "category": "Employment",
       "expected_answer": "90 days for all new employees",
-      "actual_answer": "The probationary period for new employees is 90 days. During this time, performance will be closely monitored, regular feedback sessions will be conducted, and employment may be terminated at will by either party. [Source: employee_handbook.md]",
+      "actual_answer": "The probationary period for new employees at Acme Corporation is 90 days. During this time, performance will be closely monitored, regular feedback sessions will be conducted, and employment may be terminated at will by either party. [Source: employee_handbook.md]",
       "sources_cited": [
         "employee_handbook.md",
         "pto_policy.md",
@@ -434,7 +434,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.8,
-      "latency_ms": 13087.3
+      "latency_ms": 14254.6
     },
     {
       "id": 24,
@@ -452,7 +452,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.75,
-      "latency_ms": 13125.3
+      "latency_ms": 13107.0
     },
     {
       "id": 25,
@@ -464,7 +464,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.0,
-      "latency_ms": 55.5
+      "latency_ms": 76.9
     },
     {
       "id": 26,
@@ -476,7 +476,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.0,
-      "latency_ms": 14.2
+      "latency_ms": 10.2
     },
     {
       "id": 27,
@@ -488,7 +488,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.0,
-      "latency_ms": 12.9
+      "latency_ms": 10.2
     },
     {
       "id": 28,
@@ -500,7 +500,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.0,
-      "latency_ms": 12.8
+      "latency_ms": 10.0
     },
     {
       "id": 29,
@@ -512,7 +512,7 @@
       "is_grounded": true,
       "citation_correct": true,
       "partial_match_score": 0.0,
-      "latency_ms": 12.2
+      "latency_ms": 9.6
     }
   ],
   "category_breakdown": {
@@ -536,9 +536,9 @@
     },
     "Expenses": {
       "total": 3,
-      "grounded": 2,
+      "grounded": 3,
       "citation_correct": 3,
-      "avg_partial_match": 54.3
+      "avg_partial_match": 63.8
     },
     "Holidays": {
       "total": 3,
@@ -556,13 +556,36 @@
       "total": 3,
       "grounded": 3,
       "citation_correct": 3,
-      "avg_partial_match": 71.8
+      "avg_partial_match": 80.2
     },
     "Security": {
       "total": 4,
       "grounded": 4,
       "citation_correct": 4,
       "avg_partial_match": 84.4
+    }
+  },
+  "ablation_k": {
+    "k=3": {
+      "groundedness_pct": 100.0,
+      "citation_accuracy_pct": 100.0,
+      "partial_match_avg_pct": 78.0,
+      "latency_p50_ms": 9250.6,
+      "latency_p95_ms": 10583.9
+    },
+    "k=5": {
+      "groundedness_pct": 100.0,
+      "citation_accuracy_pct": 100.0,
+      "partial_match_avg_pct": 77.1,
+      "latency_p50_ms": 13048.2,
+      "latency_p95_ms": 13780.1
+    },
+    "k=8": {
+      "groundedness_pct": 100.0,
+      "citation_accuracy_pct": 100.0,
+      "partial_match_avg_pct": 72.2,
+      "latency_p50_ms": 18111.2,
+      "latency_p95_ms": 20029.7
     }
   }
 }
